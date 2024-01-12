@@ -15,7 +15,7 @@ const app = exp();
 const limiter = rateLimit({
   max: 300,
   windowMs: 60 * 60 * 1000,
-  message: 'too many requests from this IP, try again later',
+  message: 'to many requests from this IP, try again later',
 });
 
 // app.use('/api', limiter)
