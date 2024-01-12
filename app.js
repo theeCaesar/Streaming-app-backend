@@ -8,6 +8,7 @@ const xss = require('xss-clean');
 const hpp = require('hpp');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const errorControllers = require('./controllers/errorControllers');
 
 const app = exp();
 
@@ -45,6 +46,6 @@ app.all('*', (req, res, next) => {
   next(new appError(`can't find ${req.originalUrl}`, 404));
 });
 
-// app.use(errorControllers);
+app.use(errorControllers);
 
 module.exports = app;
