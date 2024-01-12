@@ -7,7 +7,7 @@ const path = require('path');
 const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
-const hpp = require('ahpp');
+const hpp = require('hpp');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const errorControllers = require('./controllers/errorControllers');
@@ -44,7 +44,7 @@ app.get('/', (req, res) => {
   res.send({ jason: 'working' });
 });
 
-const userRouter = require('./routes/userRoutes');
+app.use('/api/v1/user', userRouter);
 
 app.all('*', (req, res, next) => {
   next(new appError(`can't find ${req.originalUrl}`, 404));
