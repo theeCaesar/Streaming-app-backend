@@ -1,5 +1,7 @@
 const exp = require('express');
 
+const userRouter = require('./routes/userRoutes');
+
 const rateLimit = require('express-rate-limit');
 const path = require('path');
 const helmet = require('helmet');
@@ -41,6 +43,8 @@ app.get('/', (req, res) => {
   console.log('working');
   res.send({ jason: 'working' });
 });
+
+const userRouter = require('./routes/userRoutes');
 
 app.all('*', (req, res, next) => {
   next(new appError(`can't find ${req.originalUrl}`, 404));
