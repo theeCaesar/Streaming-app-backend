@@ -5,7 +5,11 @@ const moviesControllers = require('../controllers/moviesControllers');
 router = exp.Router();
 
 router
-  .route('/upload')
-  .post(authControllers.protect, moviesControllers.uploadMovie);
+  .route('/')
+  .post(
+    authControllers.protect,
+    moviesControllers.saveMovieToStorage,
+    moviesControllers.uploadMovie,
+  );
 
 module.exports = router;

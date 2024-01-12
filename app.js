@@ -47,7 +47,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api/v1/user', userRouter);
-app.use('api/v1/movies', moviesRouter);
+app.use('/api/v1/movies', moviesRouter);
 
 app.all('*', (req, res, next) => {
   next(new appError(`can't find ${req.originalUrl}`, 404));

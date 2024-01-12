@@ -6,11 +6,7 @@ const movieSchema = new mongoose.Schema(
       type: String,
       required: [true, 'the movie must have a name'],
     },
-    owner: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'users',
-      required: [true, 'the movie must belong to a user'],
-    },
+    owner: {},
   },
   {
     toJSON: { getters: true, virtuals: true },
