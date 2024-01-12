@@ -96,6 +96,6 @@ usersSchema.methods.resetPasswordToken = function () {
   return resetToken;
 };
 
-const Users = mongoose.model('Users', usersSchema);
+const Users = mongoose.model('users', usersSchema);
 
 module.exports = Users;

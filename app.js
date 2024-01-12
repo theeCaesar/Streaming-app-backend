@@ -1,7 +1,9 @@
 const exp = require('express');
 
 const userRouter = require('./routes/userRoutes');
+const moviesRouter = require('./routes/moviesRoutes');
 
+const appError = require('./utils/appError');
 const rateLimit = require('express-rate-limit');
 const path = require('path');
 const helmet = require('helmet');
@@ -45,6 +47,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api/v1/user', userRouter);
+app.use('api/v1/movies', moviesRouter);
 
 app.all('*', (req, res, next) => {
   next(new appError(`can't find ${req.originalUrl}`, 404));
