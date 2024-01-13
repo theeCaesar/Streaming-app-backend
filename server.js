@@ -9,6 +9,9 @@ const dot = require('dotenv');
 dot.config({ path: './config.env' });
 
 const app = require('./app');
+const server = require('http').createServer(app);
+const io = require('socket.io')(server);
+
 const mongoose = require('mongoose');
 
 DB = process.env.MONGODB_URI;
@@ -18,14 +21,19 @@ mongoose.connect(DB).then((con) => {
 });
 
 const port = process.env.PORT || 3000;
-const server = app.listen(port, () => {
-  console.log('running...');
-});
+
+// const server = app.listen(port, () => {
+//   console.log('running...');
+// });
 
 // {
 //   useCreateIndex: true,
 //   autoIndex: true
 // }
+
+server.listen(port, function () {
+  console.log(`Listening on port ${port}`);
+});
 
 process.on('unhandledRejection', (err) => {
   console.log(err.name, err.message);

@@ -7,11 +7,19 @@ const movieSchema = new mongoose.Schema(
       required: [true, 'the movie must have a name'],
     },
     owner: {},
+    description: {
+      type: String,
+      required: [true, 'the movie must have a description'],
+    },
+    tags: {
+      type: [String],
+    },
   },
   {
     toJSON: { getters: true, virtuals: true },
     toObject: { getters: true, virtuals: true },
     id: false,
+    timestamps: true,
   },
 );
 
