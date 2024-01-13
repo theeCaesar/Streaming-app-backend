@@ -12,7 +12,7 @@ router
     moviesControllers.uploadMovie,
   );
 router
-  .route('myMovies')
+  .route('/myMovies')
   .get(authControllers.protect, moviesControllers.getMyMovies);
 
 router
