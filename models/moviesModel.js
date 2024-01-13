@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+// const deletefiles = require('../utils/deletefiles');
+// const Rooms = require('../models/roomsModel');
 
 const movieSchema = new mongoose.Schema(
   {
@@ -27,6 +29,11 @@ const movieSchema = new mongoose.Schema(
     timestamps: true,
   },
 );
+
+// movieSchema.post('findOneAndDelete', async function () {
+//   if (Rooms.findOne({ movie: this.id }))
+//     await deletefiles([`public/movies/${this.movieURL}`]);
+// });
 
 const Movies = mongoose.model('movies', movieSchema);
 

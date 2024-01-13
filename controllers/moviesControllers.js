@@ -92,8 +92,8 @@ exports.deleteMovie = catchAsyncErrors(async (req, res, next) => {
   if (!deletedMovie) {
     return next(new appError('movie not found', 404));
   }
-  if (Rooms.findOne({ movie: req.params.id }))
-    await deletefiles([`public/movies/${deletedMovie.movieURL}`], next);
+  if (!Rooms.findOne({ movie: req.params.id }))
+    await deletefiles([`public/movies${deletedMovie.movieURL}`], next);
 
   res.status(204).json({
     status: 'success',
