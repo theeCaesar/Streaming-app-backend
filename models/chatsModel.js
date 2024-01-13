@@ -30,6 +30,6 @@ const chatMessagesSchema = new mongoose.Schema(
   },
 );
 
-const ChatMessages = mongoose.model('chatMessages', movieSchema);
+const ChatMessages = mongoose.model('chatMessages', chatMessagesSchema);
 
 module.exports = ChatMessages;
