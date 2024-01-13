@@ -20,8 +20,30 @@ mongoose.connect(DB).then((con) => {
   console.log('DB connected');
 });
 
-io.on('connection', (socket) => {});
+io.on('connection', (socket) => {
+  socket.on('join-room', (roomId, user) => {
+    socket.join(roomId);
+    socket.user = user;
+    socket.to(roomId).emit('user joined', socket.user);
+  });
+  socket.on('switch-video-state', (state, roomId) => {
+    socket.to(roomId).emit('switch-video-state', state, socket.user);
+  });
+  socket.on('change-seekbar', (timestamp, roomId) => {
+    socket.to(roomId).emit('change-seekbar', timestamp, socket.user);
+  });
+  socket.on('message', (roomId, msg) => {
+    socket.to(roomId).emit('message', msg, socket.user);
+  });
+  socket.on('leave-room', () => {
+    socket.to(roomId).emit('leave-room', socket.user);
+    socket.leave(roomId);
+  });
 
+  socket.on('disconnect', () => {
+    //
+  });
+});
 const port = process.env.PORT || 3000;
 
 // const server = app.listen(port, () => {
