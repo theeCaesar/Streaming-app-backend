@@ -2,13 +2,13 @@ const mongoose = require('mongoose');
 
 const roomsSchema = new mongoose.Schema(
   {
-    roomId: String,
     movie: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'movies',
       required: true,
     },
     owner: {},
+    history: [],
     state: {
       type: String,
       enum: ['active', 'finished', 'deleted'],

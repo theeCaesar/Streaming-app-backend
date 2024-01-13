@@ -20,6 +20,8 @@ mongoose.connect(DB).then((con) => {
   console.log('DB connected');
 });
 
+io.on('connection', (socket) => {});
+
 const port = process.env.PORT || 3000;
 
 // const server = app.listen(port, () => {

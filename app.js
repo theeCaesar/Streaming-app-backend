@@ -2,6 +2,7 @@ const exp = require('express');
 
 const userRouter = require('./routes/userRoutes');
 const moviesRouter = require('./routes/moviesRoutes');
+const roomsRouter = require('./routes/roomsRoutes');
 
 const appError = require('./utils/appError');
 const rateLimit = require('express-rate-limit');
@@ -48,6 +49,7 @@ app.get('/', (req, res) => {
 
 app.use('/api/v1/user', userRouter);
 app.use('/api/v1/movies', moviesRouter);
+app.use('/api/v1/rooms', roomsRouter);
 
 app.all('*', (req, res, next) => {
   next(new appError(`can't find ${req.originalUrl}`, 404));

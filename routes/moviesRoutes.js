@@ -12,6 +12,10 @@ router
     moviesControllers.uploadMovie,
   );
 router
+  .route('myMovies')
+  .get(authControllers.protect, moviesControllers.getMyMovies);
+
+router
   .route('/:id')
   .patch(authControllers.protect, moviesControllers.updateMovie)
   .delete(authControllers.protect, moviesControllers.deleteMovie);

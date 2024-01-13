@@ -5,6 +5,7 @@ const appError = require('../utils/appError');
 const multer = require('multer');
 const Rooms = require('../models/roomsModel');
 const deletefiles = require('../utils/deletefiles');
+const APIFeatures = require('../utils/APIFeatures');
 
 const multerFilter = (req, file, cb) => {
   if (file.mimetype.startsWith('video/mp4')) {
@@ -97,5 +98,26 @@ exports.deleteMovie = catchAsyncErrors(async (req, res, next) => {
 
   res.status(204).json({
     status: 'success',
+  });
+});
+
+exports.getMyMovies = catchAsyncErrors(async (req, res, next) => {
+  const features = new APIFeatures(Movies.find(), req.query)
+    .filter()
+    .sort()
+    .paginaaton()
+    .selectFields();
+
+  const myMovies = await features.query;
+
+  if (!myMovies) {
+    return next(new appError('no movies', 404));
+  }
+
+  res.status(200).json({
+    status: 'success',
+    data: {
+      myMovies,
+    },
   });
 });
