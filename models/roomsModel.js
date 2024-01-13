@@ -2,17 +2,14 @@ const mongoose = require('mongoose');
 
 const roomsSchema = new mongoose.Schema(
   {
-    roomId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'rooms',
-      required: [true, 'message must belong to a room'],
-    },
+    roomId: String,
     movie: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'movies',
-      required: [true, 'message must belong to a movie'],
+      required: true,
     },
-    role: {
+    owner: {},
+    state: {
       type: String,
       enum: ['active', 'finished', 'deleted'],
       default: 'active',
@@ -28,4 +25,4 @@ const roomsSchema = new mongoose.Schema(
 
 const Rooms = mongoose.model('rooms', roomsSchema);
 
-module.exports = ChatMessages;
+module.exports = Rooms;

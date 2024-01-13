@@ -11,5 +11,9 @@ router
     moviesControllers.saveMovieToStorage,
     moviesControllers.uploadMovie,
   );
+router
+  .route('/:id')
+  .patch(authControllers.protect, moviesControllers.updateMovie)
+  .delete(authControllers.protect, moviesControllers.deleteMovie);
 
 module.exports = router;

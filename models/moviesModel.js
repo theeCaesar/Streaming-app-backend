@@ -6,10 +6,15 @@ const movieSchema = new mongoose.Schema(
       type: String,
       required: [true, 'the movie must have a name'],
     },
+    movieURL: {
+      type: String,
+      required: [true, 'the movie must have a name'],
+    },
     owner: {},
     description: {
       type: String,
       required: [true, 'the movie must have a description'],
+      default: 'none',
     },
     tags: {
       type: [String],
